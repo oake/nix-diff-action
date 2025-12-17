@@ -3,6 +3,7 @@ import { Effect, Option } from "effect";
 import { NotPullRequestContextError, GitHubApiError } from "../errors.js";
 import type { GitHubContext, Octokit, PullRequestPayload, CommentOptions } from "../types.js";
 import type { DiffResult } from "../schemas.js";
+import { hasDixChanges } from "./utils.js";
 
 const NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 
@@ -279,7 +280,7 @@ export class GitHubService extends Effect.Service<GitHubService>()("GitHubServic
       formatOptions?: FormatCommentOptions,
     ): Effect.Effect<void, GitHubApiError> =>
       Effect.gen(function* () {
-        const hasChanges = results.some((r) => r.diff && r.diff.trim() !== "");
+        const hasChanges = results.some((r) => hasDixChanges(r.diff));
         const commentBody = formatAggregatedComment(results, pr.head.sha, formatOptions);
         // Use displayName-specific marker for single attribute
         const displayName = results.length === 1 ? results[0].displayName : undefined;

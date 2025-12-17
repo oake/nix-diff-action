@@ -1,4 +1,4 @@
-import { $ as annotateLogs$1, $n as getOrElse, $t as succeedContext$1, A as catchIf, An as fromMap$1, At as locallyEffect$1, B as mapError$2, Bn as upperCase$1, Bt as orDie$1, C as redacted, Cn as ConfigProviderTypeId$1, Ct as fromEffect, D as all, Dn as fromEnv$1, Dt as isFresh$1, E as Service, En as constantCase$1, Et as fromFunction$1, F as gen, Fn as mapInputPath$1, Ft as matchCause$1, G as succeed$2, Gn as OpSupervision, Gt as provideMerge$1, H as provide$2, Hn as tap$1, Ht as passthrough$1, I as logError, In as nested$1, It as memoize$2, J as tryPromise, Jn as disable, Jt as scoped$1, K as sync$2, Kn as RuntimeMetrics, Kt as retry$3, L as logInfo, Ln as orElse$3, Lt as merge$2, M as fail$2, Mn as lowerCase$1, Mt as map$3, N as flatMap$2, Nn as make$2, Nt as mapError$1, O as as, On as fromFlat$1, Ot as isLayer$1, P as forEach, Pn as makeFlat$1, Pt as match$1, Q as MemoMapTypeId$1, Qn as fromNullable, Qt as succeed$1, R as logWarning, Rn as snakeCase$1, Rt as mergeAll$1, S as option, Sn as spanTag, St as fresh$1, T as isConfigError, Tn as configProviderTag, Tt as fromEffectDiscard, U as runPromise, Un as CooperativeYielding, Ut as project$1, V as orElseSucceed, Vn as within$1, Vt as orElse$2, W as scoped$2, Wn as Interruption, Wt as provide$1, X as CurrentMemoMap$1, Xn as make$1, Xt as scopedDiscard$1, Y as try_, Yn as enable, Yt as scopedContext$1, Z as LayerTypeId$1, Zn as flatMap$3, Zt as service$1, _ as decodeUnknown, _n as withTracerScoped, _r as __toCommonJS, _t as fiberRefLocallyScoped, a as GitHubApiError, an as tapErrorCause$1, ar as some$2, at as catchAllCause$1, b as value, bn as set, bt as flatMap$1, c as MissingAttributesError, cn as unwrapEffect$1, cr as require_exec, ct as dieSync$1, d as NotPullRequestContextError, dn as withSpan$1, dr as require_undici, dt as extendScope$1, en as suspend$1, er as isNone, et as annotateSpans$1, f as Array$, fn as zipWith$1, fr as require_tunnel, ft as fail$1, g as Struct, gn as withRuntimeFlagsScoped, gr as __require, gt as fiberRefLocally, h as NonEmptyString, hn as withConfigProviderScoped, hr as __export, ht as failSync$1, i as AttributeParseError, in as tapError$1, ir as none, it as catchAll$1, j as catchTags, jn as kebabCase$1, jt as makeMemoMap$1, k as catchAll$2, kn as fromJson$1, kt as launch$1, l as NixDixError, ln as unwrapScoped$1, lr as require_auth, lt as discard$1, m as Literal, mn as makeSpanScoped, mr as __esmMin, mt as failCauseSync$1, nn as syncContext$1, nr as map$5, nt as buildWithMemoMap$1, o as InvalidCommentStrategyError, on as toRuntime$1, or as pipe, ot as context$1, p as Config, pn as addFinalizer, pr as __commonJSMin, pt as failCause$1, q as tapError$2, qn as WindDown, qt as scope$1, r as ArtifactError, rn as tap$2, rr as match$2, rt as buildWithScope$1, s as InvalidDirectoryError, sn as toRuntimeWithMemoMap$1, sr as require_core$1, st as die$1, t as GitService, tn as sync$1, tr as isSome, tt as build$1, u as NixPathInfoError, un as withParentSpan$1, ur as require_lib$2, ut as empty$1, v as filter$2, vn as get, vr as __toESM, vt as fiberRefLocallyScopedWith$1, w as string, wn as FlatConfigProviderTypeId$1, wt as fromEffectContext, x as boolean, xn as addSpanStackTrace, xt as flatten$1, y as pattern, yn as make$3, yt as fiberRefLocallyWith, z as map$4, zn as unnested$1, zt as mock$1 } from "./assets/git-3H4i0TAR.js";
+import { $ as annotateLogs$1, $n as getOrElse, $t as succeedContext$1, A as catchIf, An as fromMap$1, At as locallyEffect$1, B as mapError$2, Bn as upperCase$1, Bt as orDie$1, C as redacted, Cn as ConfigProviderTypeId$1, Ct as fromEffect, D as all, Dn as fromEnv$1, Dt as isFresh$1, E as Service, En as constantCase$1, Et as fromFunction$1, F as gen, Fn as mapInputPath$1, Ft as matchCause$1, G as succeed$2, Gn as OpSupervision, Gt as provideMerge$1, H as provide$2, Hn as tap$1, Ht as passthrough$1, I as logError, In as nested$1, It as memoize$2, J as tryPromise, Jn as disable, Jt as scoped$1, K as sync$2, Kn as RuntimeMetrics, Kt as retry$3, L as logInfo, Ln as orElse$3, Lt as merge$2, M as fail$2, Mn as lowerCase$1, Mt as map$3, N as flatMap$3, Nn as make$2, Nt as mapError$1, O as as, On as fromFlat$1, Ot as isLayer$1, P as forEach, Pn as makeFlat$1, Pt as match$1, Q as MemoMapTypeId$1, Qn as fromNullable, Qt as succeed$1, R as logWarning, Rn as snakeCase$1, Rt as mergeAll$1, S as option, Sn as spanTag, St as fresh$1, T as isConfigError, Tn as configProviderTag, Tt as fromEffectDiscard, U as runPromise, Un as CooperativeYielding, Ut as project$1, V as orElseSucceed, Vn as within$1, Vt as orElse$2, W as scoped$2, Wn as Interruption, Wt as provide$1, X as CurrentMemoMap$1, Xn as make$1, Xt as scopedDiscard$1, Y as try_, Yn as enable, Yt as scopedContext$1, Z as LayerTypeId$1, Zn as flatMap$2, Zt as service$1, _ as decodeUnknown, _n as withTracerScoped, _r as __toCommonJS, _t as fiberRefLocallyScoped, a as GitHubApiError, an as tapErrorCause$1, ar as some$2, at as catchAllCause$1, b as value, bn as set, bt as flatMap$1, c as MissingAttributesError, cn as unwrapEffect$1, cr as require_exec, ct as dieSync$1, d as NotPullRequestContextError, dn as withSpan$1, dr as require_undici, dt as extendScope$1, en as suspend$1, er as isNone, et as annotateSpans$1, f as Array$, fn as zipWith$1, fr as require_tunnel, ft as fail$1, g as Struct, gn as withRuntimeFlagsScoped, gr as __require, gt as fiberRefLocally, h as NonEmptyString, hn as withConfigProviderScoped, hr as __export, ht as failSync$1, i as AttributeParseError, in as tapError$1, ir as none, it as catchAll$1, j as catchTags, jn as kebabCase$1, jt as makeMemoMap$1, k as catchAll$2, kn as fromJson$1, kt as launch$1, l as NixDixError, ln as unwrapScoped$1, lr as require_auth, lt as discard$1, m as Literal, mn as makeSpanScoped, mr as __esmMin, mt as failCauseSync$1, nn as syncContext$1, nr as map$5, nt as buildWithMemoMap$1, o as InvalidCommentStrategyError, on as toRuntime$1, or as pipe, ot as context$1, p as Config, pn as addFinalizer, pr as __commonJSMin, pt as failCause$1, q as tapError$2, qn as WindDown, qt as scope$1, r as ArtifactError, rn as tap$2, rr as match$2, rt as buildWithScope$1, s as InvalidDirectoryError, sn as toRuntimeWithMemoMap$1, sr as require_core$1, st as die$1, t as GitService, tn as sync$1, tr as isSome, tt as build$1, u as NixPathInfoError, un as withParentSpan$1, ur as require_lib$2, ut as empty$1, v as filter$2, vn as get, vr as __toESM, vt as fiberRefLocallyScopedWith$1, w as string, wn as FlatConfigProviderTypeId$1, wt as fromEffectContext, x as boolean, xn as addSpanStackTrace, xt as flatten$1, y as pattern, yn as make$3, yt as fiberRefLocallyWith, z as map$4, zn as unnested$1, zt as mock$1 } from "./assets/git-3H4i0TAR.js";
 import * as os from "os";
 import * as crypto$1 from "crypto";
 import * as nodePath$1 from "path";
@@ -3360,147 +3360,6 @@ var require_github = /* @__PURE__ */ __commonJSMin(((exports) => {
 	}
 	exports.getOctokit = getOctokit;
 }));
-var import_github = /* @__PURE__ */ __toESM(require_github(), 1);
-var NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
-var getNixDiffActionMarker = (displayName) => displayName ? `${NIX_DIFF_ACTION_MARKER_BASE}:${displayName} -->` : `${NIX_DIFF_ACTION_MARKER_BASE} -->`;
-var MAX_COMMENT_LENGTH = 6e4;
-var HEADER_FOOTER_OVERHEAD = 300;
-var PER_SECTION_OVERHEAD = 300;
-const truncateDiff = (diff, maxLength) => {
-	if (diff.length <= maxLength) return {
-		text: diff,
-		truncated: false
-	};
-	return {
-		text: `${diff.slice(0, maxLength)}\n\n... (truncated, ${diff.length} chars total)`,
-		truncated: true
-	};
-};
-const sanitizeDisplayName = (text) => text.replace(/[\\`*_{}[\]()#+!|]/g, "");
-var calculateMaxDiffPerAttribute = (attributeCount) => {
-	const availableForDiffs = MAX_COMMENT_LENGTH - HEADER_FOOTER_OVERHEAD - PER_SECTION_OVERHEAD * attributeCount;
-	return Math.max(1e3, Math.floor(availableForDiffs / attributeCount));
-};
-const checkIfAnyDiffTruncated = (results) => {
-	const maxLength = calculateMaxDiffPerAttribute(results.length);
-	return results.some((r$1) => r$1.diff.length > maxLength);
-};
-const formatAggregatedComment = (results, headSha, options) => {
-	const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
-	const marker = results.length === 1 ? getNixDiffActionMarker(results[0].displayName) : getNixDiffActionMarker();
-	const sections = results.map((result) => {
-		const { truncated, text } = truncateDiff(result.diff || "No differences found", maxDiffLength);
-		const artifactHint = truncated && options?.runId && options?.repoUrl ? `\n\n> **Note**: Diff was truncated. [View full diff in artifacts](${options.repoUrl}/actions/runs/${options.runId})` : "";
-		return `### ${sanitizeDisplayName(result.displayName)}
-
-**Attribute**: \`${result.attributePath}\`
-
-<details>
-<summary>Diff Output</summary>
-
-\`\`\`
-${text}
-\`\`\`
-${artifactHint}
-</details>`;
-	}).join("\n\n");
-	return `${marker}
-## Nix Diff
-
-${options?.repoUrl ? `[Compare changes](${options.repoUrl}/compare/${results[0].baseRef}...${results[0].prRef})` : `\`${results[0].baseRef}...${results[0].prRef}\``}
-
-${sections}
-
-${`---
-<sub>Generated by [nix-diff-action](https://github.com/natsukium/nix-diff-action) using [dix](https://github.com/faukah/dix)</sub>
-<!-- nix-diff-action-footer sha=${headSha} -->`}`;
-};
-var listNixDiffComments = (octokit, context$2, prNumber, displayName) => tryPromise({
-	try: () => octokit.paginate(octokit.rest.issues.listComments, {
-		...context$2.repo,
-		issue_number: prNumber
-	}),
-	catch: (e$1) => new GitHubApiError({
-		operation: "listComments",
-		message: `Failed to list comments: ${e$1}`
-	})
-}).pipe(map$4((comments) => {
-	const marker = getNixDiffActionMarker(displayName);
-	return comments.filter((c) => c.body?.includes(marker));
-}));
-var findExistingNixDiffComment = (octokit, context$2, prNumber, displayName) => listNixDiffComments(octokit, context$2, prNumber, displayName).pipe(map$4((comments) => fromNullable(comments[0])), map$4(map$5((c) => ({ id: c.id }))));
-var findOldNixDiffComments = (octokit, context$2, prNumber, currentHeadSha, displayName) => listNixDiffComments(octokit, context$2, prNumber, displayName).pipe(map$4((comments) => comments.filter((c) => !c.body?.includes(`sha=${currentHeadSha}`)).map((c) => ({
-	id: c.id,
-	node_id: c.node_id
-}))));
-var minimizeOldComments = (octokit, context$2, prNumber, currentHeadSha, displayName) => findOldNixDiffComments(octokit, context$2, prNumber, currentHeadSha, displayName).pipe(flatMap$2((oldComments) => forEach(oldComments, (comment) => tryPromise({
-	try: () => octokit.graphql(`
-                mutation($input: MinimizeCommentInput!) {
-                  minimizeComment(input: $input) {
-                    minimizedComment {
-                      isMinimized
-                    }
-                  }
-                }
-                `, { input: {
-		subjectId: comment.node_id,
-		classifier: "OUTDATED"
-	} }),
-	catch: (e$1) => new GitHubApiError({
-		operation: "minimizeComment",
-		message: `Failed to minimize comment ${comment.id}: ${e$1}`
-	})
-}).pipe(flatMap$2(() => logInfo(`Minimized outdated comment (ID: ${comment.id})`)), catchAll$2((error) => logWarning(`Failed to minimize comment ${comment.id}: ${error.message}`))), { concurrency: "unbounded" })));
-var updateComment = (octokit, context$2, commentId, body) => tryPromise({
-	try: () => octokit.rest.issues.updateComment({
-		...context$2.repo,
-		comment_id: commentId,
-		body
-	}),
-	catch: (e$1) => new GitHubApiError({
-		operation: "updateComment",
-		message: `Failed to update comment: ${e$1}`
-	})
-});
-var createComment = (octokit, context$2, prNumber, body) => tryPromise({
-	try: () => octokit.rest.issues.createComment({
-		...context$2.repo,
-		issue_number: prNumber,
-		body
-	}),
-	catch: (e$1) => new GitHubApiError({
-		operation: "createComment",
-		message: `Failed to create comment: ${e$1}`
-	})
-});
-var GitHubService = class extends Service()("GitHubService", { succeed: {
-	getContext: () => import_github.context,
-	getPullRequest: () => gen(function* () {
-		const pr = import_github.context.payload.pull_request;
-		if (!pr) return yield* fail$2(new NotPullRequestContextError({ message: "This action must be run in a pull request context" }));
-		return pr;
-	}),
-	createOctokit: (token) => import_github.getOctokit(token),
-	postAggregatedComment: (octokit, context$2, pr, results, options, formatOptions) => gen(function* () {
-		const hasChanges = results.some((r$1) => r$1.diff && r$1.diff.trim() !== "");
-		const commentBody = formatAggregatedComment(results, pr.head.sha, formatOptions);
-		const displayName = results.length === 1 ? results[0].displayName : void 0;
-		if (options.skipNoChange && !hasChanges) return yield* logInfo("No differences found. Skipping comment (skip-no-change is enabled).");
-		if (options.commentStrategy === "update") return yield* match$2(yield* findExistingNixDiffComment(octokit, context$2, pr.number, displayName), {
-			onNone: () => gen(function* () {
-				yield* createComment(octokit, context$2, pr.number, commentBody);
-				yield* logInfo("Posted new aggregated diff comment to PR");
-			}),
-			onSome: (e$1) => gen(function* () {
-				yield* updateComment(octokit, context$2, e$1.id, commentBody);
-				yield* logInfo("Updated existing diff comment");
-			})
-		});
-		if (options.commentStrategy === "create") yield* minimizeOldComments(octokit, context$2, pr.number, pr.head.sha, displayName);
-		yield* createComment(octokit, context$2, pr.number, commentBody);
-		yield* logInfo("Posted new aggregated diff comment to PR");
-	})
-} }) {};
 var require_config = /* @__PURE__ */ __commonJSMin(((exports) => {
 	var __importDefault = exports && exports.__importDefault || function(mod) {
 		return mod && mod.__esModule ? mod : { "default": mod };
@@ -62017,6 +61876,7 @@ var import_artifact = (/* @__PURE__ */ __commonJSMin(((exports) => {
 	__exportStar(require_client(), exports);
 	exports.default = new client_1.DefaultArtifactClient();
 })))();
+var import_github = /* @__PURE__ */ __toESM(require_github(), 1);
 var nixIdentifierPattern = "[a-zA-Z_][a-zA-Z0-9_'-]*";
 var attributePathPattern = /* @__PURE__ */ new RegExp(`^${nixIdentifierPattern}(\\.${nixIdentifierPattern})*$`);
 var AttributePath = NonEmptyString.pipe(filter$2((s) => !s.startsWith("#") && !s.startsWith(".#"), { message: () => "Attribute path must not start with '#' or '.#' - the reference prefix is added automatically" }), pattern(attributePathPattern, { message: () => "Invalid attribute path format. Expected format: 'packages.x86_64-linux.default' or 'nixosConfigurations.myhost.config.system.build.toplevel'" })).annotations({
@@ -62070,7 +61930,7 @@ var decodeResults = (parsed, artName) => decodeUnknown(DiffResultArray)(parsed).
 	message: `Invalid format: ${error}`
 })));
 var downloadAndParseArtifact = (art, downloadPath, findBy) => gen(function* () {
-	const artifactDownloadPath = (yield* withWarningOption(downloadArtifact(art.id, art.name, downloadPath, findBy), `Download artifact ${art.name}`)).pipe(flatMap$3((r$1) => fromNullable(r$1.downloadPath)));
+	const artifactDownloadPath = (yield* withWarningOption(downloadArtifact(art.id, art.name, downloadPath, findBy), `Download artifact ${art.name}`)).pipe(flatMap$2((r$1) => fromNullable(r$1.downloadPath)));
 	if (isNone(artifactDownloadPath)) {
 		yield* logWarning(`Artifact ${art.name} has no download path`);
 		return [];
@@ -62139,6 +61999,153 @@ var ArtifactService = class extends Service()("ArtifactService", { succeed: {
 			})).artifacts.filter((a) => a.name.startsWith("diff-result-")), (art) => downloadAndParseArtifact(art, downloadPath, findBy), { concurrency: "unbounded" })).flat();
 		});
 	}
+} }) {};
+const hasDixChanges = (diff) => {
+	if (!diff || diff.trim() === "") return false;
+	const baseMatch = diff.match(/^<<<\s*(.+)$/m);
+	const prMatch = diff.match(/^>>>\s*(.+)$/m);
+	if (!baseMatch || !prMatch) return true;
+	return baseMatch[1].trim() !== prMatch[1].trim();
+};
+var NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
+var getNixDiffActionMarker = (displayName) => displayName ? `${NIX_DIFF_ACTION_MARKER_BASE}:${displayName} -->` : `${NIX_DIFF_ACTION_MARKER_BASE} -->`;
+var MAX_COMMENT_LENGTH = 6e4;
+var HEADER_FOOTER_OVERHEAD = 300;
+var PER_SECTION_OVERHEAD = 300;
+const truncateDiff = (diff, maxLength) => {
+	if (diff.length <= maxLength) return {
+		text: diff,
+		truncated: false
+	};
+	return {
+		text: `${diff.slice(0, maxLength)}\n\n... (truncated, ${diff.length} chars total)`,
+		truncated: true
+	};
+};
+const sanitizeDisplayName = (text) => text.replace(/[\\`*_{}[\]()#+!|]/g, "");
+var calculateMaxDiffPerAttribute = (attributeCount) => {
+	const availableForDiffs = MAX_COMMENT_LENGTH - HEADER_FOOTER_OVERHEAD - PER_SECTION_OVERHEAD * attributeCount;
+	return Math.max(1e3, Math.floor(availableForDiffs / attributeCount));
+};
+const checkIfAnyDiffTruncated = (results) => {
+	const maxLength = calculateMaxDiffPerAttribute(results.length);
+	return results.some((r$1) => r$1.diff.length > maxLength);
+};
+const formatAggregatedComment = (results, headSha, options) => {
+	const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
+	const marker = results.length === 1 ? getNixDiffActionMarker(results[0].displayName) : getNixDiffActionMarker();
+	const sections = results.map((result) => {
+		const { truncated, text } = truncateDiff(result.diff || "No differences found", maxDiffLength);
+		const artifactHint = truncated && options?.runId && options?.repoUrl ? `\n\n> **Note**: Diff was truncated. [View full diff in artifacts](${options.repoUrl}/actions/runs/${options.runId})` : "";
+		return `### ${sanitizeDisplayName(result.displayName)}
+
+**Attribute**: \`${result.attributePath}\`
+
+<details>
+<summary>Diff Output</summary>
+
+\`\`\`
+${text}
+\`\`\`
+${artifactHint}
+</details>`;
+	}).join("\n\n");
+	return `${marker}
+## Nix Diff
+
+${options?.repoUrl ? `[Compare changes](${options.repoUrl}/compare/${results[0].baseRef}...${results[0].prRef})` : `\`${results[0].baseRef}...${results[0].prRef}\``}
+
+${sections}
+
+${`---
+<sub>Generated by [nix-diff-action](https://github.com/natsukium/nix-diff-action) using [dix](https://github.com/faukah/dix)</sub>
+<!-- nix-diff-action-footer sha=${headSha} -->`}`;
+};
+var listNixDiffComments = (octokit, context$2, prNumber, displayName) => tryPromise({
+	try: () => octokit.paginate(octokit.rest.issues.listComments, {
+		...context$2.repo,
+		issue_number: prNumber
+	}),
+	catch: (e$1) => new GitHubApiError({
+		operation: "listComments",
+		message: `Failed to list comments: ${e$1}`
+	})
+}).pipe(map$4((comments) => {
+	const marker = getNixDiffActionMarker(displayName);
+	return comments.filter((c) => c.body?.includes(marker));
+}));
+var findExistingNixDiffComment = (octokit, context$2, prNumber, displayName) => listNixDiffComments(octokit, context$2, prNumber, displayName).pipe(map$4((comments) => fromNullable(comments[0])), map$4(map$5((c) => ({ id: c.id }))));
+var findOldNixDiffComments = (octokit, context$2, prNumber, currentHeadSha, displayName) => listNixDiffComments(octokit, context$2, prNumber, displayName).pipe(map$4((comments) => comments.filter((c) => !c.body?.includes(`sha=${currentHeadSha}`)).map((c) => ({
+	id: c.id,
+	node_id: c.node_id
+}))));
+var minimizeOldComments = (octokit, context$2, prNumber, currentHeadSha, displayName) => findOldNixDiffComments(octokit, context$2, prNumber, currentHeadSha, displayName).pipe(flatMap$3((oldComments) => forEach(oldComments, (comment) => tryPromise({
+	try: () => octokit.graphql(`
+                mutation($input: MinimizeCommentInput!) {
+                  minimizeComment(input: $input) {
+                    minimizedComment {
+                      isMinimized
+                    }
+                  }
+                }
+                `, { input: {
+		subjectId: comment.node_id,
+		classifier: "OUTDATED"
+	} }),
+	catch: (e$1) => new GitHubApiError({
+		operation: "minimizeComment",
+		message: `Failed to minimize comment ${comment.id}: ${e$1}`
+	})
+}).pipe(flatMap$3(() => logInfo(`Minimized outdated comment (ID: ${comment.id})`)), catchAll$2((error) => logWarning(`Failed to minimize comment ${comment.id}: ${error.message}`))), { concurrency: "unbounded" })));
+var updateComment = (octokit, context$2, commentId, body) => tryPromise({
+	try: () => octokit.rest.issues.updateComment({
+		...context$2.repo,
+		comment_id: commentId,
+		body
+	}),
+	catch: (e$1) => new GitHubApiError({
+		operation: "updateComment",
+		message: `Failed to update comment: ${e$1}`
+	})
+});
+var createComment = (octokit, context$2, prNumber, body) => tryPromise({
+	try: () => octokit.rest.issues.createComment({
+		...context$2.repo,
+		issue_number: prNumber,
+		body
+	}),
+	catch: (e$1) => new GitHubApiError({
+		operation: "createComment",
+		message: `Failed to create comment: ${e$1}`
+	})
+});
+var GitHubService = class extends Service()("GitHubService", { succeed: {
+	getContext: () => import_github.context,
+	getPullRequest: () => gen(function* () {
+		const pr = import_github.context.payload.pull_request;
+		if (!pr) return yield* fail$2(new NotPullRequestContextError({ message: "This action must be run in a pull request context" }));
+		return pr;
+	}),
+	createOctokit: (token) => import_github.getOctokit(token),
+	postAggregatedComment: (octokit, context$2, pr, results, options, formatOptions) => gen(function* () {
+		const hasChanges = results.some((r$1) => hasDixChanges(r$1.diff));
+		const commentBody = formatAggregatedComment(results, pr.head.sha, formatOptions);
+		const displayName = results.length === 1 ? results[0].displayName : void 0;
+		if (options.skipNoChange && !hasChanges) return yield* logInfo("No differences found. Skipping comment (skip-no-change is enabled).");
+		if (options.commentStrategy === "update") return yield* match$2(yield* findExistingNixDiffComment(octokit, context$2, pr.number, displayName), {
+			onNone: () => gen(function* () {
+				yield* createComment(octokit, context$2, pr.number, commentBody);
+				yield* logInfo("Posted new aggregated diff comment to PR");
+			}),
+			onSome: (e$1) => gen(function* () {
+				yield* updateComment(octokit, context$2, e$1.id, commentBody);
+				yield* logInfo("Updated existing diff comment");
+			})
+		});
+		if (options.commentStrategy === "create") yield* minimizeOldComments(octokit, context$2, pr.number, pr.head.sha, displayName);
+		yield* createComment(octokit, context$2, pr.number, commentBody);
+		yield* logInfo("Posted new aggregated diff comment to PR");
+	})
 } }) {};
 const MainLayer = mergeAll(GitService.Default, NixService.Default, GitHubService.Default, ArtifactService.Default);
 var ActionsConfigProvider = pipe(fromEnv(), orElse(() => fromMap(new Map([
