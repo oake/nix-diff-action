@@ -1,0 +1,15 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:best-practices", "schedule:weekly"],
+  packageRules: [
+    {
+      matchPackagePatterns: ["^@actions/"],
+      groupName: "GitHub Actions packages",
+    },
+    {
+      matchDepTypes: ["devDependencies"],
+      matchUpdateTypes: ["minor", "patch"],
+      groupName: "devDependencies (non-major)",
+    },
+  ],
+}
