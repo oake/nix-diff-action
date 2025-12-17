@@ -5,6 +5,7 @@ import { parseCommentStrategy, parseAttributes, validateDirectory } from "./prog
 import { processDiffResults } from "./programs/full.js";
 import { GitService, sanitizeBranchName } from "./services/git.js";
 import { NixService } from "./services/nix.js";
+import { hasDixChanges } from "./services/utils.js";
 import { createArtifactName } from "./services/artifact.js";
 
 describe("parseAttributes", () => {
@@ -632,5 +633,60 @@ describe("createArtifactName", () => {
   test("preserves hyphens and underscores", () => {
     const result = createArtifactName("my-host_name");
     expect(result).toMatch(/^diff-result-my-host_name-[a-f0-9]{6}$/);
+  });
+});
+
+describe("hasDixChanges", () => {
+  test("returns false for undefined", () => {
+    expect(hasDixChanges(undefined)).toBe(false);
+  });
+
+  test("returns false for empty string", () => {
+    expect(hasDixChanges("")).toBe(false);
+  });
+
+  test("returns false for whitespace only", () => {
+    expect(hasDixChanges("   \n  ")).toBe(false);
+  });
+
+  test("returns false when paths are identical", () => {
+    const diff = `<<< /nix/store/c46hfz9v6wx96dbchx8szp3xf6di3hb7-nix-shell.drv
+>>> /nix/store/c46hfz9v6wx96dbchx8szp3xf6di3hb7-nix-shell.drv
+
+SIZE: 14.6 MiB -> 14.6 MiB
+DIFF: 0 bytes`;
+    expect(hasDixChanges(diff)).toBe(false);
+  });
+
+  test("returns true when paths differ", () => {
+    const diff = `<<< /nix/store/abc123-old.drv
+>>> /nix/store/def456-new.drv
+
+SIZE: 10.0 MiB -> 12.0 MiB
+DIFF: 500 KiB`;
+    expect(hasDixChanges(diff)).toBe(true);
+  });
+
+  test("returns true when cannot parse base path", () => {
+    const diff = `>>> /nix/store/def456-new.drv
+
+SIZE: 10.0 MiB`;
+    expect(hasDixChanges(diff)).toBe(true);
+  });
+
+  test("returns true when cannot parse pr path", () => {
+    const diff = `<<< /nix/store/abc123-old.drv
+
+SIZE: 10.0 MiB`;
+    expect(hasDixChanges(diff)).toBe(true);
+  });
+
+  test("handles paths with spaces correctly", () => {
+    const diff = `<<<   /nix/store/abc123-test.drv
+>>>   /nix/store/abc123-test.drv
+
+SIZE: 5.0 MiB -> 5.0 MiB
+DIFF: 0 bytes`;
+    expect(hasDixChanges(diff)).toBe(false);
   });
 });
