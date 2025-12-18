@@ -18,6 +18,7 @@ import {
   InvalidDirectoryError,
   GitWorktreeError,
   NixPathInfoError,
+  NixBuildError,
   NixDixError,
   GitHubApiError,
   ArtifactError,
@@ -71,6 +72,8 @@ export const run = (): Promise<void> =>
         setFailed(`Git ${e.operation} failed: ${e.message}`),
       NixPathInfoError: (e: NixPathInfoError) =>
         setFailed(`Nix path-info failed for ${e.flakeRef}: ${e.message}`),
+      NixBuildError: (e: NixBuildError) =>
+        setFailed(`Nix build failed for ${e.flakeRef}: ${e.message}`),
       NixDixError: (e: NixDixError) =>
         setFailed(`Nix dix failed comparing ${e.basePath} vs ${e.prPath}: ${e.message}`),
       GitHubApiError: (e: GitHubApiError) =>

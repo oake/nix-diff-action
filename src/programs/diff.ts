@@ -7,6 +7,7 @@ import {
   AttributeParseError,
   GitWorktreeError,
   NixPathInfoError,
+  NixBuildError,
   NixDixError,
   ArtifactError,
   InvalidDirectoryError,
@@ -21,6 +22,7 @@ export type RunDiffError =
   | InvalidDirectoryError
   | GitWorktreeError
   | NixPathInfoError
+  | NixBuildError
   | NixDixError
   | ArtifactError
   | ConfigError;

@@ -1,6 +1,6 @@
 import * as exec from "@actions/exec";
 import { Effect, Ref } from "effect";
-import { NixPathInfoError, NixDixError } from "../errors.js";
+import { NixPathInfoError, NixDixError, NixBuildError } from "../errors.js";
 
 interface ExecResult {
   exitCode: number;
@@ -71,8 +71,25 @@ export class NixService extends Effect.Service<NixService>()("NixService", {
           }
         }),
 
-      getNixPath: (flakeRef: string, build: boolean): Effect.Effect<string, NixPathInfoError> =>
+      getNixPath: (
+        flakeRef: string,
+        build: boolean,
+      ): Effect.Effect<string, NixPathInfoError | NixBuildError> =>
         Effect.gen(function* () {
+          // nix path-info does not build or substitute, so we need to build first
+          // when build mode is enabled
+          if (build) {
+            const buildResult = yield* execNix(["build", flakeRef, "--no-link"]);
+            if (buildResult.exitCode !== 0) {
+              return yield* Effect.fail(
+                new NixBuildError({
+                  flakeRef,
+                  message: buildResult.stderr || "unknown error",
+                }),
+              );
+            }
+          }
+
           const args = build ? ["path-info", flakeRef] : ["path-info", "--derivation", flakeRef];
           const { exitCode, stdout, stderr } = yield* execNix(args);
 
