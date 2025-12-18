@@ -12,6 +12,7 @@ import {
   InvalidDirectoryError,
   GitWorktreeError,
   NixPathInfoError,
+  NixBuildError,
   NixDixError,
   GitHubApiError,
   InvalidCommentStrategyError,
@@ -106,6 +107,7 @@ export type RunDiffPipelineError =
   | NotPullRequestContextError
   | GitWorktreeError
   | NixPathInfoError
+  | NixBuildError
   | NixDixError;
 
 /**

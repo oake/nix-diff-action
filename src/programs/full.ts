@@ -6,6 +6,7 @@ import { NixOutputConfig, DiffResult } from "../schemas.js";
 import {
   GitWorktreeError,
   NixPathInfoError,
+  NixBuildError,
   NixDixError,
   NotPullRequestContextError,
   GitHubApiError,
@@ -24,7 +25,7 @@ import {
 } from "./shared.js";
 
 // Error type aliases for better readability
-type DiffError = NixPathInfoError | NixDixError;
+type DiffError = NixPathInfoError | NixBuildError | NixDixError;
 type ProcessDiffError = GitWorktreeError | DiffError;
 export type RunFullError =
   | NotPullRequestContextError

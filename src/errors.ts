@@ -34,6 +34,11 @@ export class NixPathInfoError extends Schema.TaggedError<NixPathInfoError>()("Ni
   message: Schema.String,
 }) {}
 
+export class NixBuildError extends Schema.TaggedError<NixBuildError>()("NixBuildError", {
+  flakeRef: Schema.String,
+  message: Schema.String,
+}) {}
+
 export class NixDixError extends Schema.TaggedError<NixDixError>()("NixDixError", {
   basePath: Schema.String,
   prPath: Schema.String,
