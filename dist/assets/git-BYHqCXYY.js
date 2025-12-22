@@ -16096,7 +16096,7 @@ const OP_ITERATOR = "Iterator";
 const OP_WITH_RUNTIME = "WithRuntime";
 const OP_YIELD = "Yield";
 const OP_REVERT_FLAGS = "RevertFlags";
-var moduleVersion = "3.19.12";
+var moduleVersion = "3.19.13";
 const getCurrentVersion = () => moduleVersion;
 const EffectTypeId$3 = /* @__PURE__ */ Symbol.for("effect/Effect");
 const StreamTypeId$1 = /* @__PURE__ */ Symbol.for("effect/Stream");
@@ -16531,6 +16531,7 @@ const getASTDuplicatePropertySignatureErrorMessage = (key) => getErrorMessage("D
 const MinLengthSchemaId$1 = /* @__PURE__ */ Symbol.for("effect/SchemaId/MinLength");
 const Order$4 = number$2;
 const escape = (string$3) => string$3.replace(/[/\\^$*+?.()|[\]{}]/g, "\\$&");
+const TypeConstructorAnnotationId = /* @__PURE__ */ Symbol.for("effect/annotation/TypeConstructor");
 const BrandAnnotationId = /* @__PURE__ */ Symbol.for("effect/annotation/Brand");
 const SchemaIdAnnotationId = /* @__PURE__ */ Symbol.for("effect/annotation/SchemaId");
 const MessageAnnotationId = /* @__PURE__ */ Symbol.for("effect/annotation/Message");
@@ -26600,6 +26601,7 @@ var variance = {
 	_R: (_) => _
 };
 var builtInAnnotations = {
+	typeConstructor: TypeConstructorAnnotationId,
 	schemaId: SchemaIdAnnotationId,
 	message: MessageAnnotationId,
 	missingMessage: MissingMessageAnnotationId,
@@ -27055,6 +27057,7 @@ const nonEmptyString = (annotations$1) => minLength(1, {
 });
 var NonEmptyString = class extends String$.pipe(/* @__PURE__ */ nonEmptyString({ identifier: "NonEmptyString" })) {};
 declare(isUint8Array, {
+	typeConstructor: { _tag: "Uint8Array" },
 	identifier: "Uint8ArrayFromSelf",
 	pretty: () => (u8arr) => `new Uint8Array(${JSON.stringify(Array.from(u8arr))})`,
 	arbitrary: () => (fc) => fc.uint8Array(),
@@ -27344,4 +27347,4 @@ var GitService = class extends Service()("GitService", { succeed: { createWorktr
 } } }) {};
 export { MemoMapTypeId as $, fromNullable$2 as $n, succeed$5 as $t, catchAll as A, fromJson as An, launch as At, map$3 as B, unnested as Bn, mock as Bt, option as C, spanTag as Cn, fresh as Ct, Service as D, constantCase as Dn, fromFunction as Dt, isConfigError as E, configProviderTag as En, fromEffectDiscard as Et, forEach as F, makeFlat as Fn, match$1 as Ft, scoped as G, Interruption as Gn, provide$1 as Gt, orElseSucceed as H, within as Hn, orElse$4 as Ht, gen as I, mapInputPath as In, matchCause$1 as It, tapError as J, WindDown as Jn, scope$1 as Jt, succeed$3 as K, OpSupervision as Kn, provideMerge as Kt, logError as L, nested$2 as Ln, memoize as Lt, catchTags as M, kebabCase as Mn, makeMemoMap as Mt, fail$3 as N, lowerCase as Nn, map$5 as Nt, all$2 as O, fromEnv as On, isFresh as Ot, flatMap$1 as P, make$25 as Pn, mapError$2 as Pt, LayerTypeId as Q, flatMap$13 as Qn, service as Qt, logInfo as R, orElse$7 as Rn, merge$1 as Rt, boolean as S, addSpanStackTrace as Sn, flatten$1 as St, string as T, FlatConfigProviderTypeId as Tn, fromEffectContext as Tt, provide as U, tap$2 as Un, passthrough$1 as Ut, mapError$1 as V, upperCase as Vn, orDie$1 as Vt, runPromise as W, CooperativeYielding as Wn, project as Wt, try_ as X, enable$2 as Xn, scopedContext as Xt, tryPromise as Y, disable$2 as Yn, scoped$1 as Yt, CurrentMemoMap as Z, make$43 as Zn, scopedDiscard as Zt, Struct as _, withRuntimeFlagsScoped as _n, __require as _r, fiberRefLocally as _t, GitHubApiError as a, tapError$1 as an, none$7 as ar, catchAll$1 as at, pattern as b, make$18 as bn, fiberRefLocallyWith as bt, MissingAttributesError as c, toRuntimeWithMemoMap as cn, require_core as cr, die$1 as ct, NixPathInfoError as d, withParentSpan$1 as dn, require_lib as dr, empty as dt, succeedContext as en, getOrElse$5 as er, annotateLogs$1 as et, NotPullRequestContextError as f, withSpan$1 as fn, require_undici as fr, extendScope as ft, NonEmptyString as g, withConfigProviderScoped$1 as gn, __export as gr, failSync$1 as gt, Literal as h, makeSpanScoped$1 as hn, __esmMin as hr, failCauseSync$1 as ht, AttributeParseError as i, tap$1 as in, match$13 as ir, buildWithScope as it, catchIf as j, fromMap as jn, locallyEffect as jt, as as k, fromFlat as kn, isLayer as kt, NixBuildError as l, unwrapEffect as ln, require_exec as lr, dieSync$1 as lt, Config as m, addFinalizer$2 as mn, __commonJSMin as mr, failCause$2 as mt, removeWorktree as n, sync$3 as nn, isSome as nr, build as nt, InvalidCommentStrategyError as o, tapErrorCause$1 as on, some$4 as or, catchAllCause$1 as ot, Array$ as p, zipWith$3 as pn, require_tunnel as pr, fail$5 as pt, sync$2 as q, RuntimeMetrics as qn, retry$1 as qt, ArtifactError as r, syncContext as rn, map$19 as rr, buildWithMemoMap as rt, InvalidDirectoryError as s, toRuntime as sn, pipe as sr, context$1 as st, GitService as t, suspend$3 as tn, isNone$2 as tr, annotateSpans$1 as tt, NixDixError as u, unwrapScoped as un, require_auth as ur, discard as ut, decodeUnknown as v, withTracerScoped$1 as vn, __toCommonJS as vr, fiberRefLocallyScoped as vt, redacted as w, ConfigProviderTypeId as wn, fromEffect as wt, value as x, set as xn, flatMap$2 as xt, filter as y, get as yn, __toESM as yr, fiberRefLocallyScopedWith as yt, logWarning as z, snakeCase as zn, mergeAll$1 as zt };
 
-//# sourceMappingURL=git-D6XTKqCz.js.map
+//# sourceMappingURL=git-BYHqCXYY.js.map
