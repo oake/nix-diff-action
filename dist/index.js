@@ -62018,6 +62018,10 @@ const hasDixChanges = (diff) => {
 	if (!baseMatch || !prMatch) return true;
 	return baseMatch[1].trim() !== prMatch[1].trim();
 };
+const hasPackageChanges = (diff) => {
+	if (!diff || diff.trim() === "") return false;
+	return diff.split(/\r?\n/).length > 5;
+};
 var NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 var getNixDiffActionMarker = (displayName) => displayName ? `${NIX_DIFF_ACTION_MARKER_BASE}:${displayName} -->` : `${NIX_DIFF_ACTION_MARKER_BASE} -->`;
 var MAX_COMMENT_LENGTH = 6e4;
@@ -62043,12 +62047,11 @@ const checkIfAnyDiffTruncated = (results) => {
 	return results.some((r$1) => r$1.diff.length > maxLength);
 };
 const formatAggregatedComment = (results, headSha, options) => {
-	const visibleResults = results.filter((r$1) => hasDixChanges(r$1.diff));
-	const maxDiffLength = calculateMaxDiffPerAttribute(visibleResults.length);
-	return `${visibleResults.length === 1 ? getNixDiffActionMarker(visibleResults[0].displayName) : getNixDiffActionMarker()}
+	const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
+	return `${results.length === 1 ? getNixDiffActionMarker(results[0].displayName) : getNixDiffActionMarker()}
 ## Nix Diff
 
-${visibleResults.map((result) => {
+${results.map((result) => {
 		const { truncated, text } = truncateDiff(result.diff || "No differences found", maxDiffLength);
 		const artifactHint = truncated && options?.runId && options?.repoUrl ? `\n\n> **Note**: Diff was truncated. [View full diff in artifacts](${options.repoUrl}/actions/runs/${options.runId})` : "";
 		return `<details>
@@ -62131,10 +62134,10 @@ var GitHubService = class extends Service()("GitHubService", { succeed: {
 	}),
 	createOctokit: (token) => import_github.getOctokit(token),
 	postAggregatedComment: (octokit, context$2, pr, results, options, formatOptions) => gen(function* () {
-		const hasChanges = results.some((r$1) => hasDixChanges(r$1.diff));
-		const commentBody = formatAggregatedComment(results, pr.head.sha, formatOptions);
-		const displayName = results.length === 1 ? results[0].displayName : void 0;
-		if (options.skipNoChange && !hasChanges) return yield* logInfo("No differences found. Skipping comment (skip-no-change is enabled).");
+		const visibleResults = results.filter((r$1) => hasDixChanges(r$1.diff) && hasPackageChanges(r$1.diff));
+		if (options.skipNoChange && visibleResults.length === 0) return yield* logInfo("No meaningful differences found. Skipping comment (skip-no-change is enabled).");
+		const commentBody = formatAggregatedComment(visibleResults, pr.head.sha, formatOptions);
+		const displayName = visibleResults.length === 1 ? visibleResults[0].displayName : void 0;
 		if (options.commentStrategy === "update") return yield* match$2(yield* findExistingNixDiffComment(octokit, context$2, pr.number, displayName), {
 			onNone: () => gen(function* () {
 				yield* createComment(octokit, context$2, pr.number, commentBody);

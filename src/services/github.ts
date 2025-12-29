@@ -3,7 +3,7 @@ import { Effect, Option } from "effect";
 import { NotPullRequestContextError, GitHubApiError } from "../errors.js";
 import type { GitHubContext, Octokit, PullRequestPayload, CommentOptions } from "../types.js";
 import type { DiffResult } from "../schemas.js";
-import { hasDixChanges } from "./utils.js";
+import { hasDixChanges, hasPackageChanges } from "./utils.js";
 
 const NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 
@@ -70,16 +70,15 @@ export const formatAggregatedComment = (
   headSha: string,
   options?: FormatCommentOptions,
 ): string => {
-  const visibleResults = results.filter((r) => hasDixChanges(r.diff));
-  const maxDiffLength = calculateMaxDiffPerAttribute(visibleResults.length);
+  const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
   // Single attribute: displayName-specific marker for matrix + update strategy
   // Multiple attributes: generic marker (results order may vary in comment-only mode)
   const marker =
-    visibleResults.length === 1
-      ? getNixDiffActionMarker(visibleResults[0].displayName)
+    results.length === 1
+      ? getNixDiffActionMarker(results[0].displayName)
       : getNixDiffActionMarker();
 
-  const sections = visibleResults
+  const sections = results
     .map((result) => {
       const { truncated, text } = truncateDiff(
         result.diff || "No differences found",
@@ -269,16 +268,18 @@ export class GitHubService extends Effect.Service<GitHubService>()("GitHubServic
       formatOptions?: FormatCommentOptions,
     ): Effect.Effect<void, GitHubApiError> =>
       Effect.gen(function* () {
-        const hasChanges = results.some((r) => hasDixChanges(r.diff));
-        const commentBody = formatAggregatedComment(results, pr.head.sha, formatOptions);
-        // Use displayName-specific marker for single attribute
-        const displayName = results.length === 1 ? results[0].displayName : undefined;
-
-        if (options.skipNoChange && !hasChanges) {
+        const visibleResults = results.filter(
+          (r) => hasDixChanges(r.diff) && hasPackageChanges(r.diff),
+        );
+        if (options.skipNoChange && visibleResults.length === 0) {
           return yield* Effect.logInfo(
-            "No differences found. Skipping comment (skip-no-change is enabled).",
+            "No meaningful differences found. Skipping comment (skip-no-change is enabled).",
           );
         }
+
+        const commentBody = formatAggregatedComment(visibleResults, pr.head.sha, formatOptions);
+        // Use displayName-specific marker for single attribute
+        const displayName = visibleResults.length === 1 ? visibleResults[0].displayName : undefined;
 
         if (options.commentStrategy === "update") {
           const existing = yield* findExistingNixDiffComment(
