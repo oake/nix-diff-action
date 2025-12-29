@@ -21,5 +21,10 @@
       ],
       groupName: 'devDependencies (non-major)',
     },
+    {
+      matchPackageNames: ['vite'],
+      matchDepTypes: ['overrides'],
+      groupName: 'devDependencies (non-major)',
+    },
   ],
 }
