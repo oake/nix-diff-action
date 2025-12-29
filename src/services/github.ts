@@ -70,15 +70,16 @@ export const formatAggregatedComment = (
   headSha: string,
   options?: FormatCommentOptions,
 ): string => {
-  const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
+  const visibleResults = results.filter((r) => hasDixChanges(r.diff));
+  const maxDiffLength = calculateMaxDiffPerAttribute(visibleResults.length);
   // Single attribute: displayName-specific marker for matrix + update strategy
   // Multiple attributes: generic marker (results order may vary in comment-only mode)
   const marker =
-    results.length === 1
-      ? getNixDiffActionMarker(results[0].displayName)
+    visibleResults.length === 1
+      ? getNixDiffActionMarker(visibleResults[0].displayName)
       : getNixDiffActionMarker();
 
-  const sections = results
+  const sections = visibleResults
     .map((result) => {
       const { truncated, text } = truncateDiff(
         result.diff || "No differences found",
