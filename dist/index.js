@@ -62043,11 +62043,12 @@ const checkIfAnyDiffTruncated = (results) => {
 	return results.some((r$1) => r$1.diff.length > maxLength);
 };
 const formatAggregatedComment = (results, headSha, options) => {
-	const maxDiffLength = calculateMaxDiffPerAttribute(results.length);
-	return `${results.length === 1 ? getNixDiffActionMarker(results[0].displayName) : getNixDiffActionMarker()}
+	const visibleResults = results.filter((r$1) => hasDixChanges(r$1.diff));
+	const maxDiffLength = calculateMaxDiffPerAttribute(visibleResults.length);
+	return `${visibleResults.length === 1 ? getNixDiffActionMarker(visibleResults[0].displayName) : getNixDiffActionMarker()}
 ## Nix Diff
 
-${results.map((result) => {
+${visibleResults.map((result) => {
 		const { truncated, text } = truncateDiff(result.diff || "No differences found", maxDiffLength);
 		const artifactHint = truncated && options?.runId && options?.repoUrl ? `\n\n> **Note**: Diff was truncated. [View full diff in artifacts](${options.repoUrl}/actions/runs/${options.runId})` : "";
 		return `<details>
