@@ -1,4 +1,4 @@
-import { $ as MemoMapTypeId$1, $n as fromNullable, $t as succeed$1, A as catchAll$2, An as fromJson$1, At as launch$1, B as map$4, Bn as unnested$1, Bt as mock$1, C as option, Cn as spanTag, Ct as fresh$1, D as Service, Dn as constantCase$1, Dt as fromFunction$1, E as isConfigError, En as configProviderTag, Et as fromEffectDiscard, F as forEach, Fn as makeFlat$1, Ft as match$1, G as scoped$2, Gn as Interruption, Gt as provide$1, H as orElseSucceed, Hn as within$1, Ht as orElse$2, I as gen, In as mapInputPath$1, It as matchCause$1, J as tapError$2, Jn as WindDown, Jt as scope$1, K as succeed$2, Kn as OpSupervision, Kt as provideMerge$1, L as logError, Ln as nested$1, Lt as memoize$2, M as catchTags, Mn as kebabCase$1, Mt as makeMemoMap$1, N as fail$2, Nn as lowerCase$1, Nt as map$3, O as all, On as fromEnv$1, Ot as isFresh$1, P as flatMap$3, Pn as make$2, Pt as mapError$1, Q as LayerTypeId$1, Qn as flatMap$2, Qt as service$1, R as logInfo, Rn as orElse$3, Rt as merge$2, S as boolean, Sn as addSpanStackTrace, St as flatten$1, T as string, Tn as FlatConfigProviderTypeId$1, Tt as fromEffectContext, U as provide$2, Un as tap$1, Ut as passthrough$1, V as mapError$2, Vn as upperCase$1, Vt as orDie$1, W as runPromise, Wn as CooperativeYielding, Wt as project$1, X as try_, Xn as enable, Xt as scopedContext$1, Y as tryPromise, Yn as disable, Yt as scoped$1, Z as CurrentMemoMap$1, Zn as make$1, Zt as scopedDiscard$1, _ as Struct, _n as withRuntimeFlagsScoped, _r as __require, _t as fiberRefLocally, a as GitHubApiError, an as tapError$1, ar as none, at as catchAll$1, b as pattern, bn as make$3, bt as fiberRefLocallyWith, c as MissingAttributesError, cn as toRuntimeWithMemoMap$1, cr as require_core$1, ct as die$1, d as NixPathInfoError, dn as withParentSpan$1, dr as require_lib$2, dt as empty$1, en as succeedContext$1, er as getOrElse, et as annotateLogs$1, f as NotPullRequestContextError, fn as withSpan$1, fr as require_undici, ft as extendScope$1, g as NonEmptyString, gn as withConfigProviderScoped, gr as __export, gt as failSync$1, h as Literal, hn as makeSpanScoped, hr as __esmMin, ht as failCauseSync$1, i as AttributeParseError, in as tap$2, ir as match$2, it as buildWithScope$1, j as catchIf, jn as fromMap$1, jt as locallyEffect$1, k as as, kn as fromFlat$1, kt as isLayer$1, l as NixBuildError, ln as unwrapEffect$1, lr as require_exec, lt as dieSync$1, m as Config, mn as addFinalizer, mr as __commonJSMin, mt as failCause$1, nn as sync$1, nr as isSome, nt as build$1, o as InvalidCommentStrategyError, on as tapErrorCause$1, or as some$2, ot as catchAllCause$1, p as Array$, pn as zipWith$1, pr as require_tunnel, pt as fail$1, q as sync$2, qn as RuntimeMetrics, qt as retry$3, r as ArtifactError, rn as syncContext$1, rr as map$5, rt as buildWithMemoMap$1, s as InvalidDirectoryError, sn as toRuntime$1, sr as pipe, st as context$1, t as GitService, tn as suspend$1, tr as isNone, tt as annotateSpans$1, u as NixDixError, un as unwrapScoped$1, ur as require_auth, ut as discard$1, v as decodeUnknown, vn as withTracerScoped, vr as __toCommonJS, vt as fiberRefLocallyScoped, w as redacted, wn as ConfigProviderTypeId$1, wt as fromEffect, x as value, xn as set, xt as flatMap$1, y as filter$2, yn as get, yr as __toESM, yt as fiberRefLocallyScopedWith$1, z as logWarning, zn as snakeCase$1, zt as mergeAll$1 } from "./assets/git-BYHqCXYY.js";
+import { $ as MemoMapTypeId$1, $n as fromNullable, $t as succeed$1, A as catchAll$2, An as fromJson$1, At as launch$1, B as map$4, Bn as unnested$1, Bt as mock$1, C as option, Cn as spanTag, Ct as fresh$1, D as Service, Dn as constantCase$1, Dt as fromFunction$1, E as isConfigError, En as configProviderTag, Et as fromEffectDiscard, F as forEach, Fn as makeFlat$1, Ft as match$1, G as scoped$2, Gn as Interruption, Gt as provide$1, H as orElseSucceed, Hn as within$1, Ht as orElse$2, I as gen, In as mapInputPath$1, It as matchCause$1, J as tapError$2, Jn as WindDown, Jt as scope$1, K as succeed$2, Kn as OpSupervision, Kt as provideMerge$1, L as logError, Ln as nested$1, Lt as memoize$2, M as catchTags, Mn as kebabCase$1, Mt as makeMemoMap$1, N as fail$2, Nn as lowerCase$1, Nt as map$3, O as all, On as fromEnv$1, Ot as isFresh$1, P as flatMap$3, Pn as make$2, Pt as mapError$1, Q as LayerTypeId$1, Qn as flatMap$2, Qt as service$1, R as logInfo, Rn as orElse$3, Rt as merge$2, S as boolean, Sn as addSpanStackTrace, St as flatten$1, T as string, Tn as FlatConfigProviderTypeId$1, Tt as fromEffectContext, U as provide$2, Un as tap$1, Ut as passthrough$1, V as mapError$2, Vn as upperCase$1, Vt as orDie$1, W as runPromise, Wn as CooperativeYielding, Wt as project$1, X as try_, Xn as enable, Xt as scopedContext$1, Y as tryPromise, Yn as disable, Yt as scoped$1, Z as CurrentMemoMap$1, Zn as make$1, Zt as scopedDiscard$1, _ as Struct, _n as withRuntimeFlagsScoped, _r as __require, _t as fiberRefLocally, a as GitHubApiError, an as tapError$1, ar as none, at as catchAll$1, b as pattern, bn as make$3, bt as fiberRefLocallyWith, c as MissingAttributesError, cn as toRuntimeWithMemoMap$1, cr as require_core$1, ct as die$1, d as NixPathInfoError, dn as withParentSpan$1, dr as require_lib$2, dt as empty$1, en as succeedContext$1, er as getOrElse, et as annotateLogs$1, f as NotPullRequestContextError, fn as withSpan$1, fr as require_undici, ft as extendScope$1, g as NonEmptyString, gn as withConfigProviderScoped, gr as __exportAll, gt as failSync$1, h as Literal, hn as makeSpanScoped, hr as __esmMin, ht as failCauseSync$1, i as AttributeParseError, in as tap$2, ir as match$2, it as buildWithScope$1, j as catchIf, jn as fromMap$1, jt as locallyEffect$1, k as as, kn as fromFlat$1, kt as isLayer$1, l as NixBuildError, ln as unwrapEffect$1, lr as require_exec, lt as dieSync$1, m as Config, mn as addFinalizer, mr as __commonJSMin, mt as failCause$1, nn as sync$1, nr as isSome, nt as build$1, o as InvalidCommentStrategyError, on as tapErrorCause$1, or as some$2, ot as catchAllCause$1, p as Array$, pn as zipWith$1, pr as require_tunnel, pt as fail$1, q as sync$2, qn as RuntimeMetrics, qt as retry$3, r as ArtifactError, rn as syncContext$1, rr as map$5, rt as buildWithMemoMap$1, s as InvalidDirectoryError, sn as toRuntime$1, sr as pipe, st as context$1, t as GitService, tn as suspend$1, tr as isNone, tt as annotateSpans$1, u as NixDixError, un as unwrapScoped$1, ur as require_auth, ut as discard$1, v as decodeUnknown, vn as withTracerScoped, vr as __toCommonJS, vt as fiberRefLocallyScoped, w as redacted, wn as ConfigProviderTypeId$1, wt as fromEffect, x as value, xn as set, xt as flatMap$1, y as filter$2, yn as get, yr as __toESM, yt as fiberRefLocallyScopedWith$1, z as logWarning, zn as snakeCase$1, zt as mergeAll$1 } from "./assets/git-NRjwTa9M.js";
 import * as os from "os";
 import * as crypto$1 from "crypto";
 import * as nodePath$1 from "path";
@@ -11,7 +11,7 @@ const setConfigProvider = setConfigProvider$1;
 const fromEnv = fromEnv$1;
 const fromMap = fromMap$1;
 const orElse = orElse$3;
-var import_core$2 = /* @__PURE__ */ __toESM(require_core$1(), 1);
+var import_core = /* @__PURE__ */ __toESM(require_core$1(), 1);
 var import_exec = /* @__PURE__ */ __toESM(require_exec(), 1);
 var execNix = (args, ignoreReturnCode = true) => {
 	const stdoutChunks = [];
@@ -1554,7 +1554,7 @@ var init_dist_src$1 = __esmMin((() => {
 		return Object.assign(auth.bind(null, token), { hook: hook.bind(null, token) });
 	};
 }));
-var dist_web_exports$3 = /* @__PURE__ */ __export({ Octokit: () => Octokit }, 1);
+var dist_web_exports$3 = /* @__PURE__ */ __exportAll({ Octokit: () => Octokit }, 1);
 function createLogger(logger = {}) {
 	if (typeof logger.debug !== "function") logger.debug = noop;
 	if (typeof logger.info !== "function") logger.info = noop;
@@ -2932,7 +2932,7 @@ var init_endpoints_to_methods = __esmMin((() => {
 		}
 	};
 }));
-var dist_src_exports = /* @__PURE__ */ __export({
+var dist_src_exports = /* @__PURE__ */ __exportAll({
 	legacyRestEndpointMethods: () => legacyRestEndpointMethods,
 	restEndpointMethods: () => restEndpointMethods
 }, 1);
@@ -2952,7 +2952,7 @@ var init_dist_src = __esmMin((() => {
 	restEndpointMethods.VERSION = VERSION$3;
 	legacyRestEndpointMethods.VERSION = VERSION$3;
 }));
-var dist_web_exports$2 = /* @__PURE__ */ __export({
+var dist_web_exports$2 = /* @__PURE__ */ __exportAll({
 	composePaginateRest: () => composePaginateRest,
 	isPaginatingEndpoint: () => isPaginatingEndpoint,
 	paginateRest: () => paginateRest,
@@ -5425,7 +5425,7 @@ function listEnumNumbers(enumObject) {
 	return listEnumValues(enumObject).map((val) => val.number).filter((num, index$1, arr) => arr.indexOf(num) == index$1);
 }
 var init_enum_object = __esmMin((() => {}));
-var es2015_exports$1 = /* @__PURE__ */ __export({
+var es2015_exports$1 = /* @__PURE__ */ __exportAll({
 	BinaryReader: () => BinaryReader,
 	BinaryWriter: () => BinaryWriter,
 	LongType: () => LongType,
@@ -6874,7 +6874,7 @@ var init_server_call_context = __esmMin((() => {
 		}
 	};
 }));
-var es2015_exports = /* @__PURE__ */ __export({
+var es2015_exports = /* @__PURE__ */ __exportAll({
 	ClientStreamingCall: () => ClientStreamingCall,
 	Deferred: () => Deferred,
 	DeferredState: () => DeferredState,
@@ -8185,7 +8185,7 @@ The following characters are not allowed in files that are uploaded due to limit
           `);
 	}
 }));
-var package_exports = /* @__PURE__ */ __export({
+var package_exports = /* @__PURE__ */ __exportAll({
 	bugs: () => bugs,
 	default: () => package_default,
 	dependencies: () => dependencies,
@@ -8358,7 +8358,7 @@ var require_errors$2 = /* @__PURE__ */ __commonJSMin(((exports) => {
 		return msg.includes("insufficient usage");
 	};
 }));
-var jwt_decode_esm_exports = /* @__PURE__ */ __export({
+var jwt_decode_esm_exports = /* @__PURE__ */ __exportAll({
 	InvalidTokenError: () => n,
 	default: () => jwt_decode_esm_default
 }, 1);
@@ -8732,7 +8732,7 @@ var require_upload_zip_specification = /* @__PURE__ */ __commonJSMin(((exports) 
 		return specification;
 	}
 }));
-var tslib_es6_exports = /* @__PURE__ */ __export({
+var tslib_es6_exports = /* @__PURE__ */ __exportAll({
 	__addDisposableResource: () => __addDisposableResource,
 	__assign: () => __assign,
 	__asyncDelegator: () => __asyncDelegator,
@@ -38997,7 +38997,7 @@ var require_readdir_glob = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	}
 	readdirGlob.ReaddirGlob = ReaddirGlob;
 }));
-var async_exports = /* @__PURE__ */ __export({
+var async_exports = /* @__PURE__ */ __exportAll({
 	all: () => every$1,
 	allLimit: () => everyLimit$1,
 	allSeries: () => everySeries$1,
@@ -44319,7 +44319,7 @@ var init_event_target_shim = __esmMin((() => {
 	});
 	if (typeof window !== "undefined" && typeof window.EventTarget !== "undefined") Object.setPrototypeOf(EventTarget.prototype, window.EventTarget.prototype);
 }));
-var abort_controller_exports = /* @__PURE__ */ __export({
+var abort_controller_exports = /* @__PURE__ */ __exportAll({
 	AbortController: () => AbortController$1,
 	AbortSignal: () => AbortSignal$1,
 	default: () => abort_controller_default
@@ -60102,7 +60102,7 @@ var require_retry_options = /* @__PURE__ */ __commonJSMin(((exports) => {
 		return [retryOptions, requestOptions];
 	}
 }));
-var dist_web_exports$1 = /* @__PURE__ */ __export({ requestLog: () => requestLog }, 1);
+var dist_web_exports$1 = /* @__PURE__ */ __exportAll({ requestLog: () => requestLog }, 1);
 function requestLog(octokit) {
 	octokit.hook.wrap("request", (request$1, options) => {
 		octokit.log.debug("request", options);
@@ -61289,7 +61289,7 @@ var require_light = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 		return Bottleneck_1;
 	}));
 }));
-var dist_web_exports = /* @__PURE__ */ __export({
+var dist_web_exports = /* @__PURE__ */ __exportAll({
 	VERSION: () => VERSION,
 	retry: () => retry
 }, 1);
@@ -62160,13 +62160,13 @@ var GitHubService = class extends Service()("GitHubService", { succeed: {
 } }) {};
 const MainLayer = mergeAll(GitService.Default, NixService.Default, GitHubService.Default, ArtifactService.Default);
 var ActionsConfigProvider = pipe(fromEnv(), orElse(() => fromMap(new Map([
-	["mode", import_core$2.getInput("mode")],
-	["github-token", import_core$2.getInput("github-token")],
-	["attributes", import_core$2.getInput("attributes")],
-	["directory", import_core$2.getInput("directory")],
-	["build", import_core$2.getInput("build")],
-	["skip-no-change", import_core$2.getInput("skip-no-change")],
-	["comment-strategy", import_core$2.getInput("comment-strategy")]
+	["mode", import_core.getInput("mode")],
+	["github-token", import_core.getInput("github-token")],
+	["attributes", import_core.getInput("attributes")],
+	["directory", import_core.getInput("directory")],
+	["build", import_core.getInput("build")],
+	["skip-no-change", import_core.getInput("skip-no-change")],
+	["comment-strategy", import_core.getInput("comment-strategy")]
 ]))));
 var ModeSchema = Literal("full", "diff-only", "comment-only");
 var CommentStrategySchema$1 = Literal("create", "update");
@@ -68078,7 +68078,6 @@ var import_dist = (/* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.visit = visit.visit;
 	exports.visitAsync = visit.visitAsync;
 })))();
-var import_core$1 = /* @__PURE__ */ __toESM(require_core$1(), 1);
 const getGithubToken = gen(function* () {
 	return value(yield* ActionConfig.githubToken);
 });
@@ -68089,7 +68088,7 @@ const setDiffOutput = (results) => {
 			displayName: r$1.displayName,
 			diff: r$1.diff
 		}));
-		import_core$1.setOutput("diff", JSON.stringify(diffOutputs));
+		import_core.setOutput("diff", JSON.stringify(diffOutputs));
 	}
 };
 const loadDiffPipelineConfig = gen(function* () {
@@ -68226,7 +68225,6 @@ const validateDirectory = (directory, workspaceRoot) => {
 	const normalizedWorkspace = nodePath.resolve(workspaceRoot);
 	return resolvedPath.startsWith(normalizedWorkspace + nodePath.sep) || resolvedPath === normalizedWorkspace ? succeed$2(resolvedPath) : fail$2(new InvalidDirectoryError({ message: `directory must be within the workspace. Got: ${directory} (resolved to ${resolvedPath})` }));
 };
-var import_core = /* @__PURE__ */ __toESM(require_core$1(), 1);
 var program = gen(function* () {
 	switch (yield* ActionConfig.mode) {
 		case "full": return yield* runFull;
