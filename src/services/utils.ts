@@ -23,6 +23,15 @@ export const hasDixChanges = (diff: string | undefined): boolean => {
   return baseMatch[1].trim() !== prMatch[1].trim();
 };
 
+// Detect if dix output includes any package section content
+export const hasPackageChanges = (diff: string | undefined): boolean => {
+  if (!diff || diff.trim() === "") return false;
+
+  const lines = diff.split(/\r?\n/);
+
+  return lines.length > 5;
+};
+
 // Git utilities
 export { sanitizeBranchName } from "./git.js";
 

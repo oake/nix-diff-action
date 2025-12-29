@@ -5,7 +5,7 @@ import { parseCommentStrategy, parseAttributes, validateDirectory } from "./prog
 import { processDiffResults } from "./programs/full.js";
 import { GitService, sanitizeBranchName } from "./services/git.js";
 import { NixService } from "./services/nix.js";
-import { hasDixChanges } from "./services/utils.js";
+import { hasDixChanges, hasPackageChanges } from "./services/utils.js";
 import { createArtifactName } from "./services/artifact.js";
 
 describe("parseAttributes", () => {
@@ -684,5 +684,40 @@ SIZE: 10.0 MiB`;
 SIZE: 5.0 MiB -> 5.0 MiB
 DIFF: 0 bytes`;
     expect(hasDixChanges(diff)).toBe(false);
+  });
+});
+
+describe("hasPackageChanges", () => {
+  test("returns false for undefined", () => {
+    expect(hasPackageChanges(undefined)).toBe(false);
+  });
+
+  test("returns false for empty string", () => {
+    expect(hasPackageChanges("")).toBe(false);
+  });
+
+  test("returns false for whitespace only", () => {
+    expect(hasPackageChanges("   \n  ")).toBe(false);
+  });
+
+  test("returns true when package section is present", () => {
+    const diff = `<<< /nix/store/c7hi9s9k8p4gpa941c7z7qzh604dhgwp-nixos-system-lxc-share-lxc-proxmox-26.05.20251225.3e2499d.drv
+>>> /nix/store/77k3zm8172bg5kq3chkpg4hqm9yzcm4k-nixos-system-lxc-share-lxc-proxmox-26.05.20251225.3e2499d.drv
+
+ADDED
+[A.] hello 2.12.2.drv, 2.12.2.tar.gz.drv
+
+SIZE: 18.8 MiB -> 18.8 MiB
+DIFF: 5.48 KiB`;
+    expect(hasPackageChanges(diff)).toBe(true);
+  });
+
+  test("returns false when no package section is present", () => {
+    const diff = `<<< /nix/store/qhhdx5khfpa07zc1lwfxcbrhn4r2g9xm-darwin-system-26.05.c2b3620.drv
+>>> /nix/store/b3g2v8jf13307zkcmip1w6wdxwhhijrp-darwin-system-26.05.c2b3620.drv
+
+SIZE: 260 MiB -> 260 MiB
+DIFF: 32 bytes`;
+    expect(hasPackageChanges(diff)).toBe(false);
   });
 });
