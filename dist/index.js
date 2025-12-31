@@ -62022,6 +62022,35 @@ const hasPackageChanges = (diff) => {
 	if (!diff || diff.trim() === "") return false;
 	return diff.split(/\r?\n/).length > 5;
 };
+var isNixpkgsMinorUpdateLine = (line) => {
+	const match$3 = line.match(/^\[([A-Z.]+)\]\s+(\S+)\s+(.+?)\s+->\s+(.+)$/);
+	if (!match$3) return false;
+	if (match$3[1] !== "U.") return false;
+	const packageName = match$3[2];
+	if (!packageName.startsWith("nixos-system-") && packageName !== "darwin-system") return false;
+	const beforeVersion = match$3[3].trim();
+	const afterVersion = match$3[4].trim();
+	if (beforeVersion.includes(",") || afterVersion.includes(",")) return false;
+	if (!beforeVersion.endsWith(".drv") || !afterVersion.endsWith(".drv")) return false;
+	const extractMajorMinor = (version$1) => {
+		const versionMatch = version$1.match(/^(\d+\.\d+)\..+\.drv$/);
+		return versionMatch ? versionMatch[1] : null;
+	};
+	const beforeMajorMinor = extractMajorMinor(beforeVersion);
+	const afterMajorMinor = extractMajorMinor(afterVersion);
+	return beforeMajorMinor !== null && afterMajorMinor !== null && beforeMajorMinor === afterMajorMinor;
+};
+const filterNixpkgsMinorUpdates = (diff) => {
+	if (!diff || diff.trim() === "") return diff;
+	const filteredLines = diff.split(/\r?\n/).filter((line) => !isNixpkgsMinorUpdateLine(line));
+	const output = [];
+	for (let i = 0; i < filteredLines.length; i += 1) {
+		const line = filteredLines[i];
+		if (line.trim() === "CHANGED" && filteredLines[i + 1]?.trim() === "") continue;
+		output.push(line);
+	}
+	return output.join("\n");
+};
 var NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 var getNixDiffActionMarker = (displayName) => displayName ? `${NIX_DIFF_ACTION_MARKER_BASE}:${displayName} -->` : `${NIX_DIFF_ACTION_MARKER_BASE} -->`;
 var MAX_COMMENT_LENGTH = 6e4;
@@ -68149,7 +68178,7 @@ var processNixOutput = (config, baseFlakeRef, prFlakeRef, baseSha, headSha, buil
 	});
 	yield* logInfo(`Base path: ${basePath}`);
 	yield* logInfo(`PR path: ${prPath}`);
-	const diff = yield* nix.getDixDiff(basePath, prPath, worktreePath);
+	const diff = filterNixpkgsMinorUpdates(yield* nix.getDixDiff(basePath, prPath, worktreePath));
 	return {
 		displayName: config.displayName,
 		attributePath: config.attribute,

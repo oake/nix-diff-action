@@ -23,6 +23,7 @@ import {
   postComment,
   setDiffOutput,
 } from "./shared.js";
+import { filterNixpkgsMinorUpdates } from "../services/utils.js";
 
 // Error type aliases for better readability
 type DiffError = NixPathInfoError | NixBuildError | NixDixError;
@@ -75,7 +76,8 @@ const processNixOutput = (
     yield* Effect.logInfo(`Base path: ${basePath}`);
     yield* Effect.logInfo(`PR path: ${prPath}`);
 
-    const diff = yield* nix.getDixDiff(basePath, prPath, worktreePath);
+    const rawDiff = yield* nix.getDixDiff(basePath, prPath, worktreePath);
+    const diff = filterNixpkgsMinorUpdates(rawDiff);
 
     return {
       displayName: config.displayName,

@@ -5,7 +5,7 @@ import { parseCommentStrategy, parseAttributes, validateDirectory } from "./prog
 import { processDiffResults } from "./programs/full.js";
 import { GitService, sanitizeBranchName } from "./services/git.js";
 import { NixService } from "./services/nix.js";
-import { hasDixChanges, hasPackageChanges } from "./services/utils.js";
+import { hasDixChanges, hasPackageChanges, filterNixpkgsMinorUpdates } from "./services/utils.js";
 import { createArtifactName } from "./services/artifact.js";
 
 describe("parseAttributes", () => {
@@ -629,6 +629,76 @@ describe("createArtifactName", () => {
   test("preserves hyphens and underscores", () => {
     const result = createArtifactName("my-host_name");
     expect(result).toMatch(/^diff-result-my-host_name-[a-f0-9]{6}$/);
+  });
+});
+
+describe("filterNixpkgsMinorUpdates", () => {
+  test("removes nixos-system entries when major/minor is unchanged", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-26.05.20251225.3e2499d.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.c0b0e0f.drv
+
+CHANGED
+[U.] nixos-system-eule 26.05.20251225.3e2499d.drv -> 26.05.20251228.c0b0e0f.drv
+[U.] hello 1.0.drv -> 1.1.drv
+
+SIZE: 10.0 MiB -> 10.0 MiB
+DIFF: 100 KiB`;
+    const result = filterNixpkgsMinorUpdates(diff);
+    expect(result).not.toContain("nixos-system-eule 26.05.20251225.3e2499d.drv");
+    expect(result).toContain("[U.] hello 1.0.drv -> 1.1.drv");
+  });
+
+  test("removes darwin-system entries when major/minor is unchanged", () => {
+    const diff = `<<< /nix/store/old-darwin-system-26.05.c2b3620.drv
+>>> /nix/store/new-darwin-system-26.05.d9a1b77.drv
+
+CHANGED
+[U.] darwin-system 26.05.c2b3620.drv -> 26.05.d9a1b77.drv
+
+SIZE: 260 MiB -> 260 MiB
+DIFF: 32 bytes`;
+    const result = filterNixpkgsMinorUpdates(diff);
+    expect(result).not.toContain("darwin-system 26.05.c2b3620.drv");
+  });
+
+  test("keeps nixos-system entries when major/minor changes", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-25.11.20251101.aaaaaaa.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.bbbbbbb.drv
+
+CHANGED
+[U.] nixos-system-eule 25.11.20251101.aaaaaaa.drv -> 26.05.20251228.bbbbbbb.drv
+
+SIZE: 10.0 MiB -> 12.0 MiB
+DIFF: 200 KiB`;
+    const result = filterNixpkgsMinorUpdates(diff);
+    expect(result).toContain("nixos-system-eule 25.11.20251101.aaaaaaa.drv");
+  });
+
+  test("keeps nixos-system entries when status is not [U.]", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-26.05.20251225.3e2499d.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.c0b0e0f.drv
+
+CHANGED
+[D.] nixos-system-eule 26.05.20251225.3e2499d.drv -> 26.05.20251228.c0b0e0f.drv
+
+SIZE: 10.0 MiB -> 10.0 MiB
+DIFF: 100 KiB`;
+    const result = filterNixpkgsMinorUpdates(diff);
+    expect(result).toContain("[D.] nixos-system-eule");
+  });
+
+  test("removes empty CHANGED section after filtering", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-26.05.20251225.3e2499d.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.c0b0e0f.drv
+
+CHANGED
+[U.] nixos-system-eule 26.05.20251225.3e2499d.drv -> 26.05.20251228.c0b0e0f.drv
+
+SIZE: 10.0 MiB -> 10.0 MiB
+DIFF: -248 bytes`;
+    const result = filterNixpkgsMinorUpdates(diff);
+    expect(result).not.toContain("\nCHANGED\n");
+    expect(result).toContain("SIZE: 10.0 MiB -> 10.0 MiB");
   });
 });
 

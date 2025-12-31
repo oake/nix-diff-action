@@ -32,6 +32,58 @@ export const hasPackageChanges = (diff: string | undefined): boolean => {
   return lines.length > 5;
 };
 
+// WARNING: Shamefully vibecoded
+const isNixpkgsMinorUpdateLine = (line: string): boolean => {
+  const match = line.match(/^\[([A-Z.]+)\]\s+(\S+)\s+(.+?)\s+->\s+(.+)$/);
+  if (!match) return false;
+
+  const status = match[1];
+  if (status !== "U.") return false;
+
+  const packageName = match[2];
+  if (!packageName.startsWith("nixos-system-") && packageName !== "darwin-system") {
+    return false;
+  }
+
+  const beforeVersion = match[3].trim();
+  const afterVersion = match[4].trim();
+
+  if (beforeVersion.includes(",") || afterVersion.includes(",")) return false;
+  if (!beforeVersion.endsWith(".drv") || !afterVersion.endsWith(".drv")) return false;
+
+  const extractMajorMinor = (version: string): string | null => {
+    const versionMatch = version.match(/^(\d+\.\d+)\..+\.drv$/);
+    return versionMatch ? versionMatch[1] : null;
+  };
+
+  const beforeMajorMinor = extractMajorMinor(beforeVersion);
+  const afterMajorMinor = extractMajorMinor(afterVersion);
+
+  return (
+    beforeMajorMinor !== null && afterMajorMinor !== null && beforeMajorMinor === afterMajorMinor
+  );
+};
+
+// WARNING: Shamefully vibecoded
+export const filterNixpkgsMinorUpdates = (diff: string): string => {
+  if (!diff || diff.trim() === "") return diff;
+
+  const lines = diff.split(/\r?\n/);
+  const filteredLines = lines.filter((line) => !isNixpkgsMinorUpdateLine(line));
+  const output: string[] = [];
+
+  for (let i = 0; i < filteredLines.length; i += 1) {
+    const line = filteredLines[i];
+    if (line.trim() === "CHANGED" && filteredLines[i + 1]?.trim() === "") {
+      continue;
+    }
+
+    output.push(line);
+  }
+
+  return output.join("\n");
+};
+
 // Git utilities
 export { sanitizeBranchName } from "./git.js";
 
