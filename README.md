@@ -1,3 +1,12 @@
+# THIS IS A BAD FORK
+
+> [!CAUTION]
+> This is a fork of the awesome [nix-diff-action](https://github.com/natsukium/nix-diff-action). My fork contains changes that fit my workflow, but break expected behaviour for others. To make it worse, these changes are not gated by configuration options. To make it even worse, some of these changes are vibecoded. **DO NOT USE IN PRODUCTION**. Instead, use the original [nix-diff-action](https://github.com/natsukium/nix-diff-action).
+
+Below this line is the original README.md content at the time of forking.
+
+---
+
 # nix-diff-action
 
 A GitHub Action to compare Nix derivations between base and PR branches using [dix](https://github.com/faukah/dix).

@@ -3,7 +3,7 @@ import { Effect, Option } from "effect";
 import { NotPullRequestContextError, GitHubApiError } from "../errors.js";
 import type { GitHubContext, Octokit, PullRequestPayload, CommentOptions } from "../types.js";
 import type { DiffResult } from "../schemas.js";
-import { hasDixChanges, hasPackageChanges } from "./utils.js";
+import { hasDixChanges, hasPackageChanges, isOnlyMinorNixpkgsUpdate } from "./utils.js";
 
 const NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 
@@ -269,7 +269,8 @@ export class GitHubService extends Effect.Service<GitHubService>()("GitHubServic
     ): Effect.Effect<void, GitHubApiError> =>
       Effect.gen(function* () {
         const visibleResults = results.filter(
-          (r) => hasDixChanges(r.diff) && hasPackageChanges(r.diff),
+          (r) =>
+            hasDixChanges(r.diff) && hasPackageChanges(r.diff) && !isOnlyMinorNixpkgsUpdate(r.diff),
         );
         if (options.skipNoChange && visibleResults.length === 0) {
           return yield* Effect.logInfo(

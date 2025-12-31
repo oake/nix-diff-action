@@ -62022,6 +62022,28 @@ const hasPackageChanges = (diff) => {
 	if (!diff || diff.trim() === "") return false;
 	return diff.split(/\r?\n/).length > 5;
 };
+const isOnlyMinorNixpkgsUpdate = (diff) => {
+	if (!diff || diff.trim() === "") return false;
+	const lines = diff.split(/\r?\n/);
+	if (lines.length !== 8) return false;
+	for (const line of lines) {
+		const match$3 = line.match(/^\[([A-Z.]+)\]\s+(\S+)\s+(.+?)\s+->\s+(.+)$/);
+		if (!match$3) continue;
+		if (match$3[1] !== "U.") continue;
+		const packageName = match$3[2];
+		if (!packageName.startsWith("nixos-system-") && packageName !== "darwin-system") continue;
+		const beforeVersion = match$3[3].trim();
+		const afterVersion = match$3[4].trim();
+		const extractMajorMinor = (version$1) => {
+			const versionMatch = version$1.match(/^(\d+\.\d+)\..+\.drv$/);
+			return versionMatch ? versionMatch[1] : null;
+		};
+		const beforeMajorMinor = extractMajorMinor(beforeVersion);
+		const afterMajorMinor = extractMajorMinor(afterVersion);
+		if (beforeMajorMinor !== null && afterMajorMinor !== null && beforeMajorMinor === afterMajorMinor) return true;
+	}
+	return false;
+};
 var NIX_DIFF_ACTION_MARKER_BASE = "<!-- nix-diff-action";
 var getNixDiffActionMarker = (displayName) => displayName ? `${NIX_DIFF_ACTION_MARKER_BASE}:${displayName} -->` : `${NIX_DIFF_ACTION_MARKER_BASE} -->`;
 var MAX_COMMENT_LENGTH = 6e4;
@@ -62134,7 +62156,7 @@ var GitHubService = class extends Service()("GitHubService", { succeed: {
 	}),
 	createOctokit: (token) => import_github.getOctokit(token),
 	postAggregatedComment: (octokit, context$2, pr, results, options, formatOptions) => gen(function* () {
-		const visibleResults = results.filter((r$1) => hasDixChanges(r$1.diff) && hasPackageChanges(r$1.diff));
+		const visibleResults = results.filter((r$1) => hasDixChanges(r$1.diff) && hasPackageChanges(r$1.diff) && !isOnlyMinorNixpkgsUpdate(r$1.diff));
 		if (options.skipNoChange && visibleResults.length === 0) return yield* logInfo("No meaningful differences found. Skipping comment (skip-no-change is enabled).");
 		const commentBody = formatAggregatedComment(visibleResults, pr.head.sha, formatOptions);
 		const displayName = visibleResults.length === 1 ? visibleResults[0].displayName : void 0;

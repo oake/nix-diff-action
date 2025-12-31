@@ -32,6 +32,48 @@ export const hasPackageChanges = (diff: string | undefined): boolean => {
   return lines.length > 5;
 };
 
+// WARNING: Shamefully vibecoded
+export const isOnlyMinorNixpkgsUpdate = (diff: string | undefined): boolean => {
+  if (!diff || diff.trim() === "") return false;
+
+  const lines = diff.split(/\r?\n/);
+  if (lines.length !== 8) return false;
+
+  for (const line of lines) {
+    const match = line.match(/^\[([A-Z.]+)\]\s+(\S+)\s+(.+?)\s+->\s+(.+)$/);
+    if (!match) continue;
+
+    const status = match[1];
+    if (status !== "U.") continue;
+
+    const packageName = match[2];
+    if (!packageName.startsWith("nixos-system-") && packageName !== "darwin-system") {
+      continue;
+    }
+
+    const beforeVersion = match[3].trim();
+    const afterVersion = match[4].trim();
+
+    const extractMajorMinor = (version: string): string | null => {
+      const versionMatch = version.match(/^(\d+\.\d+)\..+\.drv$/);
+      return versionMatch ? versionMatch[1] : null;
+    };
+
+    const beforeMajorMinor = extractMajorMinor(beforeVersion);
+    const afterMajorMinor = extractMajorMinor(afterVersion);
+
+    if (
+      beforeMajorMinor !== null &&
+      afterMajorMinor !== null &&
+      beforeMajorMinor === afterMajorMinor
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 // Git utilities
 export { sanitizeBranchName } from "./git.js";
 

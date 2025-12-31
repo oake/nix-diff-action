@@ -5,7 +5,7 @@ import { parseCommentStrategy, parseAttributes, validateDirectory } from "./prog
 import { processDiffResults } from "./programs/full.js";
 import { GitService, sanitizeBranchName } from "./services/git.js";
 import { NixService } from "./services/nix.js";
-import { hasDixChanges, hasPackageChanges } from "./services/utils.js";
+import { hasDixChanges, hasPackageChanges, isOnlyMinorNixpkgsUpdate } from "./services/utils.js";
 import { createArtifactName } from "./services/artifact.js";
 
 describe("parseAttributes", () => {
@@ -719,5 +719,32 @@ DIFF: 5.48 KiB`;
 SIZE: 260 MiB -> 260 MiB
 DIFF: 32 bytes`;
     expect(hasPackageChanges(diff)).toBe(false);
+  });
+});
+
+describe("isOnlyMinorNixpkgsUpdate", () => {
+  test("returns true when diff is exactly minor nixpkgs update", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-26.05.20251225.3e2499d.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.c0b0e0f.drv
+
+CHANGED
+[U.] nixos-system-eule 26.05.20251225.3e2499d.drv -> 26.05.20251228.c0b0e0f.drv
+
+SIZE: 10.0 MiB -> 10.0 MiB
+DIFF: -248 bytes`;
+    expect(isOnlyMinorNixpkgsUpdate(diff)).toBe(true);
+  });
+
+  test("returns false when change is not a [U.] nixos-system update", () => {
+    const diff = `<<< /nix/store/old-nixos-system-eule-26.05.20251225.3e2499d.drv
+>>> /nix/store/new-nixos-system-eule-26.05.20251228.c0b0e0f.drv
+
+CHANGED
+something else
+[U.] nixos-system-eule 26.05.20251225.3e2499d.drv -> 26.05.20251228.c0b0e0f.drv
+
+SIZE: 10.0 MiB -> 10.0 MiB
+DIFF: -248 bytes`;
+    expect(isOnlyMinorNixpkgsUpdate(diff)).toBe(false);
   });
 });
